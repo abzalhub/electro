@@ -1,0 +1,19 @@
+node_modules/
+.env
+.env.local
+*.log
+npm-debug.log*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+dist/
+build/
+*.sqlite
+*.db
+
+# Локальные данные приложения — содержат реальные email/имена подписчиков
+backend/data/*.json
+
+# Локальные настройки Claude Code для этой машины (не общие для команды)
+.claude/settings.local.json

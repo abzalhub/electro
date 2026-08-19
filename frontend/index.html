@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Электроника с нуля — обучающий сайт для начинающих</title>
+  <meta
+    name="description"
+    content="Основы электроники и embedded-разработки: Arduino, ESP32, Raspberry Pi, STM32, Jetson и другие платы — простым языком для новичков."
+  />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Основная навигация">
+      <a href="#home" class="nav__logo">
+        <span class="nav__logo-mark" aria-hidden="true">⚡</span>
+        <span>Электроника с нуля</span>
+      </a>
+
+      <button
+        class="nav__toggle"
+        id="navToggle"
+        aria-expanded="false"
+        aria-controls="navList"
+        aria-label="Открыть меню навигации"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav__list" id="navList">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#basics">Основы</a></li>
+        <li><a href="#boards">Платы</a></li>
+        <li><a href="#comparison">Сравнение</a></li>
+        <li><a href="#start">С чего начать</a></li>
+        <li><a href="#glossary">Глоссарий</a></li>
+        <li><a href="#quiz">Квиз</a></li>
+        <li><a href="#subscribe">Подписка</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ================= ГЛАВНАЯ ================= -->
+    <section id="home" class="hero" aria-labelledby="home-title">
+      <div class="container hero__inner">
+        <div>
+          <p class="hero__eyebrow">Гайд для новичков</p>
+          <h1 id="home-title">Электроника и embedded-разработка — с нуля и по-человечески</h1>
+          <p>
+            Мигающий светодиод, домашняя метеостанция, робот на колёсах или устройство с искусственным
+            интеллектом на границе сети (edge AI) — всё начинается с понимания того, как устроены ток,
+            напряжение и платы, на которых работает код. Этот сайт — стартовая точка для тех, кто никогда
+            не держал в руках паяльник или контроллер, но хочет разобраться.
+          </p>
+          <div class="hero__actions">
+            <a href="#basics" class="btn btn--primary">Начать изучение</a>
+            <a href="#quiz" class="btn btn--ghost">Пройти квиз «Какая плата мне подойдёт»</a>
+          </div>
+
+          <div class="hero__facts">
+            <div class="fact-card">
+              <strong>7+</strong>
+              <span>семейств плат разобрано</span>
+            </div>
+            <div class="fact-card">
+              <strong>0</strong>
+              <span>требуемого опыта</span>
+            </div>
+            <div class="fact-card">
+              <strong>1</strong>
+              <span>первый проект за вечер</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ОСНОВЫ ЭЛЕКТРОНИКИ ================= -->
+    <section id="basics" aria-labelledby="basics-title">
+      <div class="container">
+        <h2 id="basics-title" class="reveal">Основы электроники</h2>
+        <p class="section-lead reveal">
+          Прежде чем подключать что-либо к плате, полезно понимать четыре вещи: что такое ток и
+          напряжение, зачем нужно сопротивление, из чего состоят простые схемы и как контроллер
+          общается с внешним миром через GPIO и цифровые интерфейсы.
+        </p>
+
+        <div class="grid grid--2 reveal-group reveal">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🔋</div>
+            <h3>Напряжение (U)</h3>
+            <p>
+              Разность электрических потенциалов между двумя точками цепи — то, что «толкает» заряды
+              и заставляет ток течь. Измеряется в вольтах (В). Батарейка AA даёт около 1,5 В, плата
+              Arduino работает на логическом уровне 5 В, а ESP32 и большинство современных
+              микроконтроллеров — на 3,3 В.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🌊</div>
+            <h3>Ток (I)</h3>
+            <p>
+              Направленное движение электрических зарядов по проводнику, измеряется в амперах (А).
+              В электронных проектах чаще встречаются миллиамперы (мА) — например, обычный
+              светодиод потребляет 10–20 мА.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🧱</div>
+            <h3>Сопротивление (R)</h3>
+            <p>
+              Свойство материала препятствовать прохождению тока, измеряется в омах (Ом). Резисторы
+              намеренно ограничивают ток в цепи — например, чтобы не сжечь светодиод, включённый
+              напрямую к источнику питания.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📐</div>
+            <h3>Закон Ома</h3>
+            <p>
+              Связывает три величины простой формулой и лежит в основе почти всех расчётов в
+              электронике — от подбора резистора для светодиода до анализа целой схемы.
+            </p>
+          </article>
+        </div>
+
+        <div class="formula-box reveal">
+          <div class="formula-box__equation">U = I × R</div>
+          <p>
+            Пример: если источник даёт 5 В, а нужно ограничить ток через светодиод до 10 мА (0,01 А),
+            то потребуется резистор сопротивлением примерно R = U / I = 5 / 0,01 = 500 Ом
+            (на практике берут ближайший номинал, например 470 Ом, с поправкой на падение напряжения
+            на самом светодиоде).
+          </p>
+        </div>
+
+        <h3 class="reveal">Базовые компоненты</h3>
+        <div class="grid grid--2 reveal-group reveal">
+          <article class="card">
+            <h3>Резистор</h3>
+            <p>Ограничивает силу тока в цепи и задаёт нужные уровни напряжения (например, в делителях напряжения).</p>
+          </article>
+          <article class="card">
+            <h3>Конденсатор</h3>
+            <p>Накапливает и отдаёт электрический заряд; сглаживает скачки питания, фильтрует помехи, участвует в таймерах.</p>
+          </article>
+          <article class="card">
+            <h3>Диод</h3>
+            <p>Пропускает ток только в одном направлении. Светодиод (LED) — частный случай диода, который при этом светится.</p>
+          </article>
+          <article class="card">
+            <h3>Транзистor</h3>
+            <p>Электронный «клапан»: малым сигналом на управляющем выводе управляет намного большим током — основа усилителей, ключей и всей цифровой логики внутри процессоров.</p>
+          </article>
+        </div>
+
+        <h3 class="reveal">Как контроллер общается с миром</h3>
+        <dl class="protocol-grid reveal">
+          <div>
+            <dt>GPIO</dt>
+            <dd>General Purpose Input/Output — универсальный цифровой вывод платы, который программно настраивается на вход или выход (например, читает нажатие кнопки или зажигает светодиод).</dd>
+          </div>
+          <div>
+            <dt>PWM</dt>
+            <dd>Широтно-импульсная модуляция — быстрое включение/выключение сигнала с разной длительностью «включено», что имитирует аналоговый уровень. Используется для яркости LED, скорости моторов, серво.</dd>
+          </div>
+          <div>
+            <dt>I2C</dt>
+            <dd>Двухпроводная шина (SDA + SCL) для подключения нескольких датчиков и модулей одновременно с адресацией устройств. Медленнее SPI, но экономит выводы.</dd>
+          </div>
+          <div>
+            <dt>SPI</dt>
+            <dd>Быстрый последовательный интерфейс (обычно 4 провода) для дисплеев, SD-карт, радиомодулей — там, где важна высокая скорость передачи.</dd>
+          </div>
+          <div>
+            <dt>UART</dt>
+            <dd>Простой последовательный интерфейс «точка-точка» (TX/RX) для отладки через терминал или связи с GPS-модулями, Bluetooth-модулями и другими платами.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ================= ВИДЫ ПЛАТ ================= -->
+    <section id="boards" aria-labelledby="boards-title">
+      <div class="container">
+        <h2 id="boards-title" class="reveal">Виды плат и их отличия</h2>
+        <p class="section-lead reveal">
+          Все платы делятся на два больших класса: <strong>микроконтроллеры (MCU)</strong> — простые,
+          дешёвые чипы без операционной системы, которые выполняют одну программу в цикле, и
+          <strong>микрокомпьютеры (SBC, Single-Board Computer)</strong> — полноценные компьютеры на
+          одной плате, которые загружают Linux или другую ОС и умеют работать с несколькими
+          процессами одновременно. MCU включается мгновенно и экономит энергию, SBC — мощнее и
+          гибче, но требует накопитель и время на загрузку.
+        </p>
+
+        <div class="grid grid--3 reveal-group reveal">
+          <article class="card board-card" id="board-arduino">
+            <div class="board-card__header">
+              <h3>Arduino</h3>
+              <span class="badge badge--mcu">MCU</span>
+            </div>
+            <p>Семейство простых плат для обучения и прототипирования на базе 8-битных (AVR, напр. Uno) и 32-битных микроконтроллеров. Программируется в Arduino IDE на C/C++-подобном языке.</p>
+            <ul class="board-card__specs">
+              <li><strong>CPU:</strong> ATmega328P @16 МГц (Uno)</li>
+              <li><strong>ОЗУ:</strong> 2 КБ</li>
+              <li><strong>GPIO:</strong> 14 цифровых + 6 аналоговых</li>
+              <li><strong>ОС:</strong> нет</li>
+            </ul>
+            <p><strong>Применение:</strong> обучение, простые датчики, автоматизация, DIY-роботы.</p>
+          </article>
+
+          <article class="card board-card" id="board-esp32">
+            <div class="board-card__header">
+              <h3>ESP32 / ESP8266</h3>
+              <span class="badge badge--mcu">MCU</span>
+            </div>
+            <p>Недорогие микроконтроллеры со встроенным Wi-Fi (ESP32 — ещё и Bluetooth). Стандарт де-факто для IoT-проектов.</p>
+            <ul class="board-card__specs">
+              <li><strong>CPU:</strong> Xtensa LX6, 2 ядра @240 МГц (ESP32)</li>
+              <li><strong>ОЗУ:</strong> 520 КБ SRAM</li>
+              <li><strong>GPIO:</strong> ~34 вывода (ESP32)</li>
+              <li><strong>ОС:</strong> нет (опционально FreeRTOS)</li>
+            </ul>
+            <p><strong>Применение:</strong> умный дом, IoT-датчики с передачей данных по Wi-Fi.</p>
+          </article>
+
+          <article class="card board-card" id="board-stm32">
+            <div class="board-card__header">
+              <h3>STM32 (Nucleo / Discovery)</h3>
+              <span class="badge badge--mcu">MCU</span>
+            </div>
+            <p>Профессиональные ARM Cortex-M микроконтроллеры от STMicroelectronics. Nucleo — платы для прототипирования с разъёмами Arduino, Discovery — платы с набором сенсоров для демонстрации возможностей чипа.</p>
+            <ul class="board-card__specs">
+              <li><strong>CPU:</strong> ARM Cortex-M0/M3/M4/M7</li>
+              <li><strong>ОЗУ:</strong> от 8 КБ до сотен КБ</li>
+              <li><strong>GPIO:</strong> зависит от модели</li>
+              <li><strong>ОС:</strong> нет (bare-metal / RTOS)</li>
+            </ul>
+            <p><strong>Применение:</strong> промышленная автоматика, управление моторами, профессиональный embedded.</p>
+          </article>
+
+          <article class="card board-card" id="board-raspberry">
+            <div class="board-card__header">
+              <h3>Raspberry Pi</h3>
+              <span class="badge badge--sbc">SBC</span>
+            </div>
+            <p>Самый популярный микрокомпьютер: полноценный Linux, большое сообщество, много готовых уроков и модулей расширения (HAT).</p>
+            <ul class="board-card__specs">
+              <li><strong>CPU:</strong> ARM Cortex-A72/A76, 4 ядра</li>
+              <li><strong>ОЗУ:</strong> 1–8 ГБ</li>
+              <li><strong>GPIO:</strong> 40-контактный разъём</li>
+              <li><strong>ОС:</strong> Raspberry Pi OS (Linux)</li>
+            </ul>
+            <p><strong>Применение:</strong> медиацентры, серверы, обучение Linux, робототехника, ретро-игры.</p>
+          </article>
+
+          <article class="card board-card" id="board-jetson">
+            <div class="board-card__header">
+              <h3>NVIDIA Jetson</h3>
+              <span class="badge badge--sbc">SBC</span>
+            </div>
+            <p>Микрокомпьютеры с GPU от NVIDIA на борту, заточенные под ИИ-инференс прямо на устройстве (edge AI) — компьютерное зрение, нейросети в реальном времени.</p>
+            <ul class="board-card__specs">
+              <li><strong>CPU + GPU:</strong> ARM CPU + NVIDIA GPU с ядрами CUDA</li>
+              <li><strong>ОЗУ:</strong> 2–64 ГБ (в зависимости от модели)</li>
+              <li><strong>GPIO:</strong> есть, меньше, чем у RPi</li>
+              <li><strong>ОС:</strong> Linux (JetPack)</li>
+            </ul>
+            <p><strong>Применение:</strong> робототехника, дроны, камеры с распознаванием образов, edge AI.</p>
+          </article>
+
+          <article class="card board-card" id="board-beaglebone">
+            <div class="board-card__header">
+              <h3>BeagleBone</h3>
+              <span class="badge badge--sbc">SBC</span>
+            </div>
+            <p>Микрокомпьютер с упором на промышленные и real-time задачи благодаря встроенным PRU (Programmable Real-time Units) — сопроцессорам для точной работы с таймингами.</p>
+            <ul class="board-card__specs">
+              <li><strong>CPU:</strong> ARM Cortex-A8 @1 ГГц (Black)</li>
+              <li><strong>ОЗУ:</strong> 512 МБ</li>
+              <li><strong>GPIO:</strong> ~65–92 вывода</li>
+              <li><strong>ОС:</strong> Linux (Debian)</li>
+            </ul>
+            <p><strong>Применение:</strong> промышленное управление, задачи с жёстким реальным временем.</p>
+          </article>
+
+          <article class="card board-card" id="board-orangepi">
+            <div class="board-card__header">
+              <h3>Orange Pi</h3>
+              <span class="badge badge--sbc">SBC</span>
+            </div>
+            <p>Бюджетная альтернатива Raspberry Pi на чипах Allwinner/Rockchip с похожим форм-фактором и GPIO-разводкой.</p>
+            <ul class="board-card__specs">
+              <li><strong>CPU:</strong> ARM Cortex-A (Allwinner/Rockchip)</li>
+              <li><strong>ОЗУ:</strong> 0,5–8+ ГБ</li>
+              <li><strong>GPIO:</strong> разъём, похожий на RPi</li>
+              <li><strong>ОС:</strong> Linux / Android</li>
+            </ul>
+            <p><strong>Применение:</strong> бюджетные домашние серверы, медиацентры, DIY-кластеры.</p>
+          </article>
+        </div>
+
+        <div class="callout reveal">
+          <h3>Микроконтроллер vs микрокомпьютер — как выбрать</h3>
+          <p>
+            Если задача — читать один датчик и мигать светодиодом годами от батарейки, без операционной
+            системы и с мгновенным включением, нужен микроконтроллер (Arduino, ESP32, STM32). Если
+            нужно запускать несколько программ одновременно, работать с сетью, файловой системой,
+            камерой или нейросетью — нужен микрокомпьютер (Raspberry Pi, Jetson, BeagleBone, Orange Pi).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СРАВНИТЕЛЬНАЯ ТАБЛИЦА ================= -->
+    <section id="comparison" aria-labelledby="comparison-title">
+      <div class="container">
+        <h2 id="comparison-title" class="reveal">Сравнительная таблица плат</h2>
+        <p class="section-lead reveal">
+          Цены ориентировочные и зависят от модели, региона и курса — используйте таблицу как
+          отправную точку для выбора направления, а не точный прайс.
+        </p>
+
+        <div class="table-wrapper reveal">
+          <table class="compare-table">
+            <caption>Сравнение по типу, ресурсам, цене и типичному применению</caption>
+            <thead>
+              <tr>
+                <th scope="col">Плата</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Цена, ориент.</th>
+                <th scope="col">ОЗУ</th>
+                <th scope="col">GPIO</th>
+                <th scope="col">ОС</th>
+                <th scope="col">Типичное применение</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Arduino Uno</td>
+                <td>MCU</td>
+                <td>~1 500–2 500 ₽</td>
+                <td>2 КБ</td>
+                <td>20</td>
+                <td>Нет</td>
+                <td>Обучение, DIY-проекты</td>
+              </tr>
+              <tr>
+                <td>ESP32</td>
+                <td>MCU</td>
+                <td>~500–1 000 ₽</td>
+                <td>520 КБ</td>
+                <td>~34</td>
+                <td>Нет (FreeRTOS опц.)</td>
+                <td>IoT, умный дом</td>
+              </tr>
+              <tr>
+                <td>STM32 Nucleo</td>
+                <td>MCU</td>
+                <td>~800–2 000 ₽</td>
+                <td>8–320 КБ</td>
+                <td>до 100+</td>
+                <td>Нет</td>
+                <td>Промышленность, профи-embedded</td>
+              </tr>
+              <tr>
+                <td>Raspberry Pi 4/5</td>
+                <td>SBC</td>
+                <td>~5 000–10 000 ₽</td>
+                <td>1–8 ГБ</td>
+                <td>40</td>
+                <td>Linux</td>
+                <td>DIY, обучение, серверы</td>
+              </tr>
+              <tr>
+                <td>NVIDIA Jetson Nano/Orin</td>
+                <td>SBC</td>
+                <td>~10 000–60 000 ₽</td>
+                <td>2–64 ГБ</td>
+                <td>40</td>
+                <td>Linux (JetPack)</td>
+                <td>Edge AI, робототехника</td>
+              </tr>
+              <tr>
+                <td>BeagleBone Black</td>
+                <td>SBC</td>
+                <td>~6 000–8 000 ₽</td>
+                <td>512 МБ</td>
+                <td>65–92</td>
+                <td>Linux</td>
+                <td>Промышленный real-time контроль</td>
+              </tr>
+              <tr>
+                <td>Orange Pi</td>
+                <td>SBC</td>
+                <td>~2 500–6 000 ₽</td>
+                <td>0,5–8+ ГБ</td>
+                <td>40</td>
+                <td>Linux / Android</td>
+                <td>Бюджетные SBC-проекты</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= С ЧЕГО НАЧАТЬ ================= -->
+    <section id="start" aria-labelledby="start-title">
+      <div class="container">
+        <h2 id="start-title" class="reveal">С чего начать</h2>
+        <p class="section-lead reveal">Пошаговый план для первого погружения в электронику и embedded-разработку.</p>
+
+        <div class="steps reveal">
+          <div class="step">
+            <h3>Выберите стартовый набор</h3>
+            <p>
+              Для первого знакомства проще всего взять Arduino Uno (или совместимый клон) или ESP32 —
+              оба варианта дёшевы, имеют огромное количество уроков на русском и англйиском и прощают
+              ошибки в коде и подключении.
+            </p>
+          </div>
+          <div class="step">
+            <h3>Соберите базовый набор инструментов</h3>
+            <p>
+              Макетная плата (breadboard) без пайки, набор проводов «папа-папа»/«папа-мама», набор
+              резисторов, светодиоды, кнопки, USB-кабель для программирования и мультиметр для
+              измерения напряжения и проверки соединений — этого достаточно для первых 10–15 проектов.
+            </p>
+          </div>
+          <div class="step">
+            <h3>Установите среду разработки</h3>
+            <p>
+              Для Arduino/ESP32 — бесплатная Arduino IDE. Для STM32 — STM32CubeIDE. Для Raspberry Pi/
+              Jetson/BeagleBone/Orange Pi — запишите ОС на карту памяти через официальный Imager и
+              подключайтесь по SSH или напрямую монитором и клавиатурой.
+            </p>
+          </div>
+          <div class="step">
+            <h3>Сделайте первый проект — мигающий светодиод</h3>
+            <p>
+              Классическое «Hello World» embedded-мира: подключите светодиод через резистор
+              к цифровому выводу платы и напишите программу, которая включает и выключает его раз в
+              секунду. Это проверяет всю цепочку — от кода до физического мира — и даёт базовое
+              понимание GPIO.
+            </p>
+          </div>
+          <div class="step">
+            <h3>Двигайтесь дальше осознанно</h3>
+            <p>
+              Изучите датчики (температура, свет, движение), затем — коммуникацию между устройствами
+              (I2C/SPI/Wi-Fi), а после этого пробуйте более мощные платформы (Raspberry Pi, Jetson) для
+              задач с ОС, сетью или ИИ.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ГЛОССАРИЙ ================= -->
+    <section id="glossary" aria-labelledby="glossary-title">
+      <div class="container">
+        <h2 id="glossary-title" class="reveal">Глоссарий терминов</h2>
+        <p class="section-lead reveal">Короткий словарь понятий, которые встречаются в мире embedded-разработки.</p>
+
+        <dl class="glossary reveal-group reveal">
+          <div class="glossary-term">
+            <dt>MCU</dt>
+            <dd>Microcontroller Unit — микроконтроллер, чип с CPU, памятью и периферией на одном кристалле, без ОС.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>SBC</dt>
+            <dd>Single-Board Computer — микрокомпьютер на одной плате, загружающий полноценную операционную систему.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>GPIO</dt>
+            <dd>Универсальный цифровой вывод платы для чтения или подачи сигнала.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>PWM</dt>
+            <dd>Широтно-импульсная модуляция — способ имитировать аналоговый сигнал быстрым переключением цифрового.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>ADC / DAC</dt>
+            <dd>Аналого-цифровой и цифро-аналоговый преобразователи — переводят сигнал между аналоговым и цифровым видом.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>I2C / SPI / UART</dt>
+            <dd>Стандартные последовательные интерфейсы для связи платы с датчиками, дисплеями и другими устройствами.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Firmware (прошивка)</dt>
+            <dd>Программа, записанная в память контроллера и управляющая его работой на низком уровне.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Bootloader (загрузчик)</dt>
+            <dd>Небольшая программа, которая запускается первой при включении и загружает основную прошивку или ОС.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Breadboard (макетная плата)</dt>
+            <dd>Панель для сборки схем без пайки — компоненты и провода вставляются в отверстия с внутренними контактами.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Edge AI (граничный ИИ)</dt>
+            <dd>Выполнение вычислений и инференса нейросетей прямо на устройстве, без отправки данных в облако.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>RTOS</dt>
+            <dd>Real-Time Operating System — операционная система реального времени с предсказуемым временем реакции, используется на MCU для сложных задач.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>HAT / Shield</dt>
+            <dd>Плата расширения, которая подключается поверх основной (HAT — для Raspberry Pi, Shield — для Arduino) и добавляет новые функции.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ================= КВИЗ ================= -->
+    <section id="quiz" aria-labelledby="quiz-title">
+      <div class="container">
+        <h2 id="quiz-title" class="reveal">Квиз: какая плата тебе подойдёт?</h2>
+        <p class="section-lead reveal">Ответьте на несколько вопросов — и получите рекомендацию с обоснованием.</p>
+
+        <div class="quiz reveal" id="quizBox" aria-live="polite">
+          <div id="quizProgress" class="quiz__progress">Вопрос 1 из 5</div>
+
+          <div id="quizQuestion" class="quiz__question">
+            <!-- вопросы рендерятся через js/quiz.js -->
+          </div>
+
+          <div id="quizResult" class="quiz__result" hidden>
+            <h3>Тебе подойдёт:</h3>
+            <p class="quiz__result-board" id="quizResultBoard"></p>
+            <p id="quizResultReason"></p>
+            <button class="btn btn--ghost" id="quizRestart" type="button">Пройти ещё раз</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ПОДПИСКА / ОБРАТНАЯ СВЯЗЬ ================= -->
+    <section id="subscribe" aria-labelledby="subscribe-title">
+      <div class="container">
+        <h2 id="subscribe-title" class="reveal">Оставайтесь на связи</h2>
+        <p class="section-lead reveal">
+          Подпишитесь на рассылку с новыми материалами по электронике и embedded-разработке —
+          пришлём подборку статей и проектов на выбранную тему.
+        </p>
+
+        <form class="subscribe-form reveal" id="subscribeForm" novalidate>
+          <div class="form-field">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="60" />
+            <small id="nameError" role="alert"></small>
+          </div>
+
+          <div class="form-field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+            <small id="emailError" role="alert"></small>
+          </div>
+
+          <div class="form-field">
+            <label for="interest">Что интереснее всего?</label>
+            <select id="interest" name="interest">
+              <option value="other" selected>Пока не определился(-ась)</option>
+              <option value="arduino">Arduino / DIY-проекты</option>
+              <option value="raspberry">Raspberry Pi / микрокомпьютеры</option>
+              <option value="esp32">ESP32 / IoT</option>
+              <option value="stm32">STM32 / промышленный embedded</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn--primary" id="subscribeSubmit">Подписаться</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Учебный проект «Электроника с нуля» — материал подготовлен для образовательных целей.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/subscribeForm.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

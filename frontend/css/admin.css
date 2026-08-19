@@ -1,0 +1,38 @@
+/* Стили только для служебной страницы /admin.html */
+.admin-main {
+  padding-block: 3rem 4rem;
+}
+
+.admin-main h1 {
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.1rem);
+  margin-bottom: 0.75rem;
+}
+
+.admin-main code {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.9em;
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-status {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.admin-status--error {
+  color: var(--color-danger);
+}
+
+.admin-empty {
+  margin-top: 1.5rem;
+  color: var(--color-text-muted);
+}

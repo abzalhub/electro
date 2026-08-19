@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админка — подписчики | Электроника с нуля</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-body">
+  <header class="site-header">
+    <nav class="nav container" aria-label="Навигация админки">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-mark" aria-hidden="true">⚡</span>
+        <span>Электроника с нуля — админка</span>
+      </a>
+      <a href="index.html" class="btn btn--ghost">На сайт</a>
+    </nav>
+  </header>
+
+  <main class="container admin-main">
+    <h1>Подписчики</h1>
+    <p class="section-lead">
+      Список всех, кто отправил форму подписки на сайте. Данные читаются напрямую из
+      <code>GET /api/subscribers</code>, который, в свою очередь, читает файл
+      <code>backend/data/subscribers.json</code>. Это служебная страница без пароля — не
+      публикуйте её в открытом доступе, она подходит только для локальной разработки.
+    </p>
+
+    <div class="admin-toolbar">
+      <button type="button" id="refreshBtn" class="btn btn--primary">Обновить</button>
+      <span id="adminStatus" class="admin-status" aria-live="polite"></span>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="compare-table" id="subscribersTable">
+        <caption id="subscribersCaption">Загрузка...</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Имя</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Интерес</th>
+            <th scope="col">Дата подписки</th>
+          </tr>
+        </thead>
+        <tbody id="subscribersBody">
+          <!-- строки рендерятся через js/admin.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <p id="emptyState" class="admin-empty" hidden>Пока никто не подписался.</p>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
