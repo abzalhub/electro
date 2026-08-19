@@ -8,6 +8,7 @@ async function ensureFile() {
   try {
     await fs.access(DATA_FILE);
   } catch {
+    await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
     await fs.writeFile(DATA_FILE, '[]', 'utf-8');
   }
 }
